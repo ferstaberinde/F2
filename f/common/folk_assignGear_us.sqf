@@ -39,19 +39,20 @@
 
 // GENERAL EQUIPMENT USED BY MULTIPLE CLASSES
 
-_rifle = "M16A2"; _riflemag = "30Rnd_556x45_Stanag";																						// Standard Riflemen (Spotter, HMG Assistant Gunner, MMG Assistant Gunner, Assistant Automatic Rifleman, MAT Assistant Gunner, HAT Assistant Gunner, MTR Assistant Gunner, Rifleman)
+_rifle = "M4A1_Aim_camo"; _riflemag = "30Rnd_556x45_Stanag";																						// Standard Riflemen (Spotter, HMG Assistant Gunner, MMG Assistant Gunner, Assistant Automatic Rifleman, MAT Assistant Gunner, HAT Assistant Gunner, MTR Assistant Gunner, Rifleman)
 
-_carbine = "M4A1"; _carbinemag = "30Rnd_556x45_Stanag"; 																					// Standard Carabineer (Medic, HMG Gunner, Rifleman (AT), Rifleman (AA), MAT Gunner, HAT Gunner, MTR Gunner, Carabineer)
+_carbine = "M4A1_Aim_camo"; _carbinemag = "30Rnd_556x45_Stanag"; 																					// Standard Carabineer (Medic, HMG Gunner, Rifleman (AT), Rifleman (AA), MAT Gunner, HAT Gunner, MTR Gunner, Carabineer)
 
 _smg = "MP5A5"; _smgmag = "30Rnd_9x19_MP5";																									// Standard Submachine Gun/Personal Defence Weapon (Vehicle Crew, Aircraft Pilot, Submachinegunner)
 
-_glrifle = "M4A1_HWS_GL"; _glriflemag = "30Rnd_556x45_Stanag"; _glmag = "1Rnd_HE_M203";														// Rifle with GL and HE grenades (CO, DC, FTLs)
+_glrifle = "M4A1_HWS_GL_camo"; _glriflemag = "30Rnd_556x45_Stanag"; _glmag = "1Rnd_HE_M203";														// Rifle with GL and HE grenades (CO, DC, FTLs)
 _glsmokewhite = "1Rnd_Smoke_M203"; _glsmokegreen = "1Rnd_SmokeGreen_M203"; _glsmokered = "1Rnd_SmokeRed_M203";    							// Smoke for FTLs, Squad Leaders, etc 
 _glflarewhite = "FlareWhite_M203"; _glflarered = "FlareRed_M203"; _glflareyellow = "FlareYellow_M203"; _glflaregreen = "FlareGreen_M203";	// Flares for FTLs, Squad Leaders, etc
 
-_pistol = "M9"; _pistolmag = "15Rnd_9x19_M9";																								// Pistols (CO, DC, Automatic Rifleman, Medium MG Gunner)
+_pistol = "M9"; _pistolmag = "15Rnd_9x19_M9";
+_sfpistol = "M9SD"; _sfpistolmag = "15Rnd_9x19_M9SD";																								// Pistols (CO, DC, Automatic Rifleman, Medium MG Gunner)
 
-_grenade = "HandGrenade_West"; _smokegrenade = "SmokeShell";																				// Grenades
+_grenade = "HandGrenade_West"; _smokegrenade = "SmokeShell"; _smokegrenadegreen = "SmokeShellGreen";												// Grenades
 
 _bagmedium = "US_Assault_Pack_EP1";		// 8+ slots																							// Backpack for assistant gunners (AAR, AMMG, AMAT, AHAT), so that they don't have to drop ammo themselves
 _baglarge =  "US_Backpack_EP1"; 		// 12+ slots
@@ -126,30 +127,46 @@ switch (_typeofUnit) do
 	case "co":
 	{
 		{_unit addmagazine _glriflemag} foreach [1,2,3,4,5,6,7];	//_COriflemag
-		{_unit addmagazine _glmag} foreach [1,2];
-		{_unit addmagazine _glflarewhite} foreach [1,2];
+		{_unit addmagazine _glmag} foreach [1,2,3,4];
 		{_unit addmagazine _glsmokewhite} foreach [1,2];
 		_unit addweapon _glrifle;									//_COrifle
 		{_unit addmagazine _pistolmag} foreach [1,2];
 		_unit addweapon _pistol;		
 		{_unit addmagazine _grenade} foreach [1,2];
 		{_unit addmagazine _smokegrenade;} foreach [1,2];
+		{_unit addmagazine _smokegrenadegreen;} foreach [1];
 		_unit addweapon "Binocular";
+		if (_useBackpacks==1) then 
+		{
+			_unit addBackpack _bagmedium;
+			clearMagazineCargo (unitBackpack _unit);
+			(unitBackpack _unit) addMagazineCargoGlobal [_glriflemag, 6];
+			(unitBackpack _unit) addMagazineCargoGlobal [_grenade, 1];
+			(unitBackpack _unit) addMagazineCargoGlobal [_glmag, 1];
+		};
 	};
   
 // LOADOUT: DEPUTY COMMANDER
 	case "dc":
 	{
 		{_unit addmagazine _glriflemag} foreach [1,2,3,4,5,6,7];	//_DCriflemag
-		{_unit addmagazine _glmag} foreach [1,2];
-		{_unit addmagazine _glflarewhite} foreach [1,2];
+		{_unit addmagazine _glmag} foreach [1,2,3,4];
 		{_unit addmagazine _glsmokewhite} foreach [1,2];
 		_unit addweapon _glrifle;									//_DCrifle
 		{_unit addmagazine _pistolmag} foreach [1,2];
 		_unit addweapon _pistol;		
 		{_unit addmagazine _grenade} foreach [1,2];
 		{_unit addmagazine _smokegrenade;} foreach [1,2];
+		{_unit addmagazine _smokegrenadegreen;} foreach [1];
 		_unit addweapon "Binocular";
+		if (_useBackpacks==1) then 
+		{
+			_unit addBackpack _bagmedium;
+			clearMagazineCargo (unitBackpack _unit);
+			(unitBackpack _unit) addMagazineCargoGlobal [_glriflemag, 6];
+			(unitBackpack _unit) addMagazineCargoGlobal [_grenade, 1];
+			(unitBackpack _unit) addMagazineCargoGlobal [_glmag, 1];
+		};
 	}; 
 
 // LOADOUT: MEDIC
@@ -157,20 +174,29 @@ switch (_typeofUnit) do
 	{
 		{_unit addmagazine _carbinemag} foreach [1,2,3,4,5,6,7];	
 		_unit addweapon _carbine;
-		{_unit addmagazine _smokegrenade;} foreach [1,2];		
+		{_unit addmagazine _smokegrenade;} foreach [1,2];
 	};
 
 // LOADOUT: FIRE TEAM LEADER
 	case "ftl":
 	{
 		{_unit addmagazine _glriflemag} foreach [1,2,3,4,5,6,7];	//_FTLriflemag
-		{_unit addmagazine _glmag} foreach [1,2];
-		{_unit addmagazine _glflarewhite} foreach [1,2,3,4];
+		{_unit addmagazine _glmag} foreach [1,2,3,4];
 		{_unit addmagazine _glsmokewhite} foreach [1,2];
 		_unit addweapon _glrifle;									//_FTLrifle		
 		{_unit addmagazine _grenade} foreach [1,2];
 		{_unit addmagazine _smokegrenade;} foreach [1,2];
+		{_unit addmagazine _smokegrenadegreen;} foreach [1];
 		_unit addweapon "Binocular";
+		
+		if (_useBackpacks==1) then 
+		{
+			_unit addBackpack _bagmedium;
+			clearMagazineCargo (unitBackpack _unit);
+			(unitBackpack _unit) addMagazineCargoGlobal [_glriflemag, 6];
+			(unitBackpack _unit) addMagazineCargoGlobal [_grenade, 1];
+			(unitBackpack _unit) addMagazineCargoGlobal [_glmag, 1];
+		};
 	};	
 
 // LOADOUT: AUTOMATIC RIFLEMAN
@@ -180,6 +206,12 @@ switch (_typeofUnit) do
 		_unit addweapon _AR;		
 		{_unit addmagazine _pistolmag} foreach [1,2];
 		_unit addweapon _pistol;
+		
+		if (_useBackpacks==1) then 
+		{
+			_unit addBackpack _bagmedium;
+			clearMagazineCargo (unitBackpack _unit);
+		};
 	};	
 	
 // LOADOUT: ASSISTANT AUTOMATIC RIFLEMAN
@@ -188,12 +220,16 @@ switch (_typeofUnit) do
 		{_unit addmagazine _riflemag} foreach [1,2,3,4,5];
 		_unit addweapon _rifle;		
 		{_unit addmagazine _grenade} foreach [1,2];
+		{_unit addmagazine _smokegrenade;} foreach [1,2];
+		{_unit addmagazine _smokegrenadegreen;} foreach [1];
 			// Put ammo in backpack. If not OA unit, then should add directly to inv of unit instead.
 		if (_useBackpacks==1) then {
 			_unit addBackpack _baglarge;
 			clearMagazineCargo (unitBackpack _unit);
 			(unitBackpack _unit) addMagazineCargoGlobal [_ARmag, 2];
 			(unitBackpack _unit) addMagazineCargoGlobal [_RATmag, 1];
+			(unitBackpack _unit) addMagazineCargoGlobal [_glriflemag, 6];
+			(unitBackpack _unit) addMagazineCargoGlobal [_grenade, 2];
 		} else {
 			{_unit addmagazine _ARmag} foreach [1];
 		};
@@ -206,6 +242,13 @@ switch (_typeofUnit) do
 		_unit addweapon _carbine;
 		{_unit addmagazine _RATmag} foreach [1];				
 		_unit addweapon _RAT;
+		if (_useBackpacks==1) then 
+		{
+			_unit addBackpack _bagmedium;
+			clearMagazineCargo (unitBackpack _unit);
+			(unitBackpack _unit) addMagazineCargoGlobal [_glriflemag, 6];
+			(unitBackpack _unit) addMagazineCargoGlobal [_grenade, 2];
+		};
 	};		
 	
 // LOADOUT: SURFACE TO AIR MISSILE GUNNER 
@@ -436,7 +479,236 @@ switch (_typeofUnit) do
 		if (true) exitwith {player globalchat format ["DEBUG (f\common\folk_assignGear.sqf): Unit = %1. Gear template %2 does not exist, used Rifleman instead.",_unit,_typeofunit]};
    };
 
+// LOADOUT: SFOD-A Detachment Commander
 
+   case "sfdc":
+   {
+      
+   		{_unit addmagazine "30Rnd_556x45_Stanag";} foreach [1,2,3,4,5,6,7];
+      	_unit addweapon "M4A3_CCO_EP1";
+      	{_unit addmagazine _grenade} foreach [1,2];
+      	_unit addmagazine "SmokeShellGreen";
+      	{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      	_unit addweapon _sfpistol;
+      	_unit addweapon "Binocular_Vector";
+      	_unit addBackpack "US_Backpack_Specops_EP1";
+      	_unit selectweapon primaryweapon _unit;
+   };
+
+// LOADOUT: SFOD-A Operations Sgt.
+
+   case "sfos":
+   {
+      switch (_sfloadout) do
+        {
+               // Day Assault
+	       case 0:
+	       {
+		removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "20rnd_762x51_B_SCAR";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "SCAR_H_STD_EGLM_Spect";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine "1Rnd_HE_M203"} foreach [1,2,3];
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Backpack_Specops_EP1";
+      		_unit selectweapon primaryweapon _unit;
+               };
+
+	       // Night Assault
+	       case 1:
+	       {
+	       	removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "30Rnd_556x45_Stanag";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "SCAR_L_STD_EGLM_TWS";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine "1Rnd_HE_M203"} foreach [1,2,3];
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Backpack_Specops_EP1";
+      		_unit selectweapon primaryweapon _unit;
+	         };
+
+          };
+   };
+   
+// LOADOUT: SFOD-A Weapons Sgt.
+
+   case "sfws":
+   {
+      switch (_sfloadout) do
+        {
+               // Day Assault
+	       case 0:
+	       {
+		removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "100Rnd_762x51_M240";} foreach [1,2,3];
+      		_unit addweapon "Mk_48_DES_EP1";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Assault_Pack_AmmoSAW_EP1";
+      		_unit selectweapon primaryweapon _unit;
+               };
+
+	       // Night Assault
+	       case 1:
+	       {
+	       	removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "100Rnd_762x51_M240";} foreach [1,2,3];
+      		_unit addweapon "Mk_48_DES_EP1";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Assault_Pack_AmmoSAW_EP1";
+      		_unit selectweapon primaryweapon _unit;
+	         };
+
+          };
+   };
+   
+// LOADOUT: SFOD-A Comms Sgt.
+
+   case "sfcs":
+   {
+      switch (_sfloadout) do
+        {
+               // Day Assault
+	       case 0:
+	       {
+		removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "30Rnd_556x45_Stanag";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "M4A3_CCO_EP1";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		//_unit addBackpack "US_UAV_Pack_EP1";
+      		_unit selectweapon primaryweapon _unit;
+               };
+
+	       // Night Assault
+	       case 1:
+	       {
+	       	removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "30Rnd_556x45_Stanag";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "SCAR_L_STD_Mk4CQT";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		//_unit addBackpack "US_UAV_Pack_EP1";
+      		_unit selectweapon primaryweapon _unit;
+	         };
+
+          };
+   };
+// LOADOUT: SFOD-A Medical Sgt.
+
+   case "sfms":
+   {
+      switch (_sfloadout) do
+        {
+               // Day Assault
+	       case 0:
+	       {
+		removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "30Rnd_556x45_Stanag";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "G36C_camo";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Backpack_Specops_EP1";
+      		_unit selectweapon primaryweapon _unit;
+               };
+
+	       // Night Assault
+	       case 1:
+	       {
+	       	removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "30Rnd_556x45_StanagSD";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "G36_C_SD_camo";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Backpack_Specops_EP1";
+      		_unit selectweapon primaryweapon _unit;
+	         };
+
+          };
+   };
+   
+// LOADOUT: SFOD-A Engineering Sgt.
+
+   case "sfes":
+   {
+      switch (_sfloadout) do
+        {
+               // Day Assault
+	       case 0:
+	       {
+		removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "30Rnd_556x45_Stanag";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "G36C_camo";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Assault_Pack_Explosives_EP1";
+      		_unit selectweapon primaryweapon _unit;
+               };
+
+	       // Night Assault
+	       case 1:
+	       {
+	       	removeBackpack _unit;
+                removeallweapons _unit;
+      		{_unit addmagazine "30Rnd_556x45_Stanag";} foreach [1,2,3,4,5,6,7];
+      		_unit addweapon "SCAR_L_STD_Mk4CQT";
+      		{_unit addmagazine _grenade} foreach [1,2];
+      		_unit addmagazine "SmokeShellGreen";
+      		{_unit addmagazine _sfpistolmag;} foreach [1,2,3,4];
+      		_unit addweapon _sfpistol;
+      		_unit addweapon "NVGoggles";
+      		_unit addweapon "Binocular_Vector";
+      		_unit addBackpack "US_Assault_Pack_Explosives_EP1";
+      		_unit selectweapon primaryweapon _unit;
+	         };
+
+          };
+   };
 // ====================================================================================
 
 // END SWITCH FOR DEFINE UNIT TYPE LOADOUTS
