@@ -34,25 +34,32 @@
 //		r 		- rifleman
 //		car		- carabineer
 //		smg		- submachinegunner
+//
+//		sfdc	- sf detachment commander
+//		sfod 	- sf operations sgt.
+//		sfws	- sf weapons sgt.
+//		sfcs	- sf comms sgt.
+//		sfms	- sf medical sgt.
+//		sfes	- sf engineering sgt
 
 // ====================================================================================
 
 // GENERAL EQUIPMENT USED BY MULTIPLE CLASSES
 
-_rifle = "M4A1_Aim_camo"; _riflemag = "30Rnd_556x45_Stanag";																						// Standard Riflemen (Spotter, HMG Assistant Gunner, MMG Assistant Gunner, Assistant Automatic Rifleman, MAT Assistant Gunner, HAT Assistant Gunner, MTR Assistant Gunner, Rifleman)
+_rifle = "M4A1_Aim_camo"; _riflemag = "30Rnd_556x45_Stanag";																				// Standard Riflemen (Spotter, HMG Assistant Gunner, MMG Assistant Gunner, Assistant Automatic Rifleman, MAT Assistant Gunner, HAT Assistant Gunner, MTR Assistant Gunner, Rifleman)
 
-_carbine = "M4A1_Aim_camo"; _carbinemag = "30Rnd_556x45_Stanag"; 																					// Standard Carabineer (Medic, HMG Gunner, Rifleman (AT), Rifleman (AA), MAT Gunner, HAT Gunner, MTR Gunner, Carabineer)
+_carbine = "M4A1_Aim_camo"; _carbinemag = "30Rnd_556x45_Stanag"; 																			// Standard Carabineer (Medic, HMG Gunner, Rifleman (AT), Rifleman (AA), MAT Gunner, HAT Gunner, MTR Gunner, Carabineer)
 
 _smg = "MP5A5"; _smgmag = "30Rnd_9x19_MP5";																									// Standard Submachine Gun/Personal Defence Weapon (Vehicle Crew, Aircraft Pilot, Submachinegunner)
 
-_glrifle = "M4A1_HWS_GL_camo"; _glriflemag = "30Rnd_556x45_Stanag"; _glmag = "1Rnd_HE_M203";														// Rifle with GL and HE grenades (CO, DC, FTLs)
+_glrifle = "M4A1_HWS_GL_camo"; _glriflemag = "30Rnd_556x45_Stanag"; _glmag = "1Rnd_HE_M203";												// Rifle with GL and HE grenades (CO, DC, FTLs)
 _glsmokewhite = "1Rnd_Smoke_M203"; _glsmokegreen = "1Rnd_SmokeGreen_M203"; _glsmokered = "1Rnd_SmokeRed_M203";    							// Smoke for FTLs, Squad Leaders, etc 
 _glflarewhite = "FlareWhite_M203"; _glflarered = "FlareRed_M203"; _glflareyellow = "FlareYellow_M203"; _glflaregreen = "FlareGreen_M203";	// Flares for FTLs, Squad Leaders, etc
 
 _pistol = "M9"; _pistolmag = "15Rnd_9x19_M9";
-_sfpistol = "M9SD"; _sfpistolmag = "15Rnd_9x19_M9SD";																								// Pistols (CO, DC, Automatic Rifleman, Medium MG Gunner)
+_sfpistol = "M9SD"; _sfpistolmag = "15Rnd_9x19_M9SD";																						// Pistols (CO, DC, Automatic Rifleman, Medium MG Gunner)
 
-_grenade = "HandGrenade_West"; _smokegrenade = "SmokeShell"; _smokegrenadegreen = "SmokeShellGreen";												// Grenades
+_grenade = "HandGrenade_West"; _smokegrenade = "SmokeShell"; _smokegrenadegreen = "SmokeShellGreen"; _smokegrenadegreen = "SmokeShellRed";												// Grenades
 
 _bagmedium = "US_Assault_Pack_EP1";		// 8+ slots																							// Backpack for assistant gunners (AAR, AMMG, AMAT, AHAT), so that they don't have to drop ammo themselves
 _baglarge =  "US_Backpack_EP1"; 		// 12+ slots
@@ -86,7 +93,15 @@ _RAA = "Stinger"; _RAAmag = "Stinger";																										// Rifleman AA (
 
 _SNrifle = "M24_des_EP1"; _SNriflemag = "5Rnd_762x51_M24";																					// Sniper
 
-_mine = "Mine"; _satchel = "pipebomb";																										// Engineer
+
+_mine = "Mine"; _satchel = "pipebomb"; 																										// Engineer
+
+//US Army Special Forces
+_SFWS = "Mk_48_DES_EP1"; _SFWSmag="100Rnd_762x51_M240";
+_SFglrifle = "30Rnd_556x45_Stanag"; 
+_SFrifle = "SCAR_L_STD_HOLO";
+_SFscopedrifle = "SCAR_L_STD_Mk4CQT"; 
+_SFsilencedrifle = "SCAR_L_CQC_CCO_SD"; _SFsilencedriflemag="30Rnd_556x45_StanagSD";																										
 
 // ====================================================================================
 
@@ -110,7 +125,7 @@ _unit addweapon "NVGoggles"; 					// add universal NVG for this faction
 //_unit addweapon "ItemMap";				// etc
 //_unit addweapon "ItemCompass";
 //_unit addweapon "ItemRadio";
-//_unit addweapon ItemWatch;
+//_unit addweapon "ItemWatch";
 
 // ====================================================================================
 
