@@ -32,8 +32,6 @@ player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _fromEH = 
 player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _vehicle = %1",_vehicle];
 player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _vehicleRole = %1",_vehicleRole];
 player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _unitToCheck = %1",_unitToCheck];
-player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _typeToCheck = %1",_typeToCheck];
-  player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _strTypeToCheck = %1",_strTypeToCheck];
 player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _restrictedCrewTypes = %1",_restrictedCrewTypes];
 player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _warningMsg = %1",_warningMsg];
 };
@@ -46,13 +44,13 @@ player sideChat format ["DEBUG (f\common\f_isAuthorisedCrewType.sqf): _warningMs
 // script. Unless the unit is entering as cargo, or part of the authorised crew, it
 // is ejected from the vehicle with a warning message (as a hint).
 
-if (local _unitToCheck) then {
-	{	
-		if ((_vehicleRole != "CARGO") && !(_unitToCheck isKindOf _x)) exitWith {
+if (local _unitToCheck) then {	
+	if (_vehicleRole != "CARGO") then {
+		if ({_unitToCheck isKindOf _x} count _restrictedCrewTypes < 1) then {
 			hint format ["%1",_warningMsg];
 			_unitToCheck action ["getout",_vehicle];
 		};
-	} forEach _restrictedCrewTypes;
+	};
 };
 
 // ====================================================================================
