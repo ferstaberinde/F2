@@ -247,4 +247,4 @@ player setVariable ["BIS_noCoreConversations", true];
 // F2 - Join group action
 // Credits: Please see the F2 online manual (http://www.ferstaberinde.com/f2/en/)
 
-[false] execVM "f\common\f_groupJoinAddOption.sqf";
+[] execVM "f\common\f_grpSwitch.sqf";
