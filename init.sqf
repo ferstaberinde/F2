@@ -137,7 +137,9 @@ player setVariable ["BIS_noCoreConversations", true];
 // F2 - Authorised Crew Type Check
 // Credits: Please see the F2 online manual (http://www.ferstaberinde.com/f2/en/)
 
-// VehicleName addEventhandler ["GetIn", {[_this,["UnitType1","UnitType2"]] execVM "f\common\f_isAuthorisedCrewType.sqf"}];
+//	if (isServer) then {
+// 		VehicleName addEventhandler ["GetIn", {[_this,["UnitKind","UnitKind2"]] execVM "f\common\f_isAuthorisedCrewType.sqf"}];
+// 	};
 
 // ====================================================================================
 
