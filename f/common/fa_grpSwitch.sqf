@@ -16,40 +16,25 @@ f_joinGroup = {
 };
 
 f_leadGroup_broadcast = {
-	if (local (_this select 0) then {
-		player selectLeader (_this select 0); 
-	} else {
-		f_newGroupLeader = _this;
-		if (isServer) then {
-			_group = _this select 0;
-			_owner = owner _group;
-			_owner PublicVariableClient "f_newGroupLeader";
-		} else {
-			publicVariableServer "f_newGroupLeader";
-		};
-	};
+	f_newGroupLeader = _this;
+	publicVariable "f_newGroupLeader";
+	_group = f_newGroupLeader select 0;
+	_unit = f_newGroupLeader select 1;
+	_group selectLeader _unit;
 };
 
-if (isServer) then {
-	"f_newGroupLeader" addPublicVariableEventHandler {
-		_group = f_newGroupLeader select 0;
-		_owner = owner _group;
-		_owner PublicVariableClient "f_newGroupLeader";
-	};
-};
-
-if (!isDedicated) then {
-	waitUntil {player == player};
-
-	"f_newGroupLeader" addPublicVariableEventHandler {
+"f_newGroupLeader" addPublicVariableEventHandler {
 		_group = f_newGroupLeader select 0;
 		_unit = f_newGroupLeader select 1;
 		_group selectLeader _unit;
 	};
+
+if (!isDedicated) then {
+	waitUntil {player == player};
 	
 	BIS_MENU_GroupCommunication = [
 		["Group Management Menu",false],
-		["Pick a new group", [2], "", -5, [["expression", "spawn f_joinGroup"]], "1", "1"]
+		["Pick a new group", [2], "", -5, [["expression", "[] spawn f_joinGroup"]], "1", "1"],
 		["Take lead of your group", [2], "", -5, [["expression", "[group player, player] spawn f_leadGroup_broadcast"]], "1", "1"]
 	]; 
 };
