@@ -12,6 +12,13 @@ _player = _this select 0;
 _killer = _this select 1;
 _seagull = _this select 2;
 
+if(f_var_acre) then {
+
+	// Enable ACRE spectator
+	_this execVM "f\common\fa_ACRE_spectator.sqf";
+	
+};
+
 // if ( isNil "_seagull" )  then  { _seagull = "noWait";};
 VM_scriptName="specta";
 

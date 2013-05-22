@@ -46,7 +46,7 @@
 
 _radio1 = "ACRE_PRC117F"; //longrange
 _radio2 = "ACRE_PRC148";  //midrange
-_radio3 = "";
+_radio3 = "ACRE_PRC343";
 
 // ====================================================================================
 
@@ -55,6 +55,22 @@ _radio3 = "";
 
 _typeofUnit = toLower (_this select 0);			// Tidy input for SWITCH/CASE statements, expecting something like : r = Rifleman, co = Commanding Officer, rat = Rifleman (AT)
 _unit = _this select 1;							// expecting name of unit; originally passed by using 'this' in unit init
+
+// ====================================================================================
+
+// DELETE ALL RADIOS
+// All previously assigned radios must be deleted, in order to set the radio frequencies per side.
+
+_clearRadiosHandle = _this execVM "f\common\fa_ACRE_clearRadios.sqf";
+
+waitUntil{scriptDone _clearRadiosHandle};
+
+// ====================================================================================
+
+// ADD 343s
+// Gives each player a 343.
+
+_unit addWeapon _radio3;
 
 // ====================================================================================
 
@@ -250,6 +266,8 @@ switch (_typeofUnit) do
 // CARGO: CAR - room for 10 weapons and 50 cargo items
 	case "v_car":
 	{
+		clearWeaponCargoGlobal _unit;
+		clearMagazineCargoGlobal _unit;
 		_unit addWeaponCargoGlobal [_radio2, 1];
 		_unit addWeaponCargoGlobal [_radio1, 1];
 	};	
@@ -257,6 +275,8 @@ switch (_typeofUnit) do
 // CARGO: TRUCK - room for 50 weapons and 200 cargo items
 	case "v_tr":
 	{
+		clearWeaponCargoGlobal _unit;
+		clearMagazineCargoGlobal _unit;
 		_unit addWeaponCargoGlobal [_radio2, 4];
 		_unit addWeaponCargoGlobal [_radio1, 4];
 
@@ -265,6 +285,8 @@ switch (_typeofUnit) do
 // CARGO: IFV - room for 10 weapons and 100 cargo items
 	case "v_ifv":
 	{
+		clearWeaponCargoGlobal _unit;
+		clearMagazineCargoGlobal _unit;
 		_unit addWeaponCargoGlobal [_radio2, 2];
 		_unit addWeaponCargoGlobal [_radio1, 2];
 

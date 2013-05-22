@@ -215,7 +215,7 @@ if (_faction == "bis_civ_special") then {
 // automatically includes a file which contains the appropriate equipment data.
 
 if (_useACRE == 1) then {
-#include "folk_assignGear_acre.sqf"
+_this execVM "f\common\folk_assignGear_acre.sqf";
 };
 
 // ====================================================================================
