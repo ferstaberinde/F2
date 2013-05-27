@@ -15,7 +15,7 @@ _seagull = _this select 2;
 if(f_var_acre) then {
 
 	// Enable ACRE spectator
-	_this execVM "f\common\fa_ACRE_spectator.sqf";
+	 _ret = [true] call acre_api_fnc_setSpectator;
 	
 };
 
