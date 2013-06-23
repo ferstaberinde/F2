@@ -204,7 +204,7 @@ Version | Date
 * Updated ACRE Support component (automatically splits frequencies per side).
 * Updated ACRE Support component (added spectator chat).
 * Fixed F2 Common Local Variables component (prevented double-counts of vehicle crew).
-* 
+ 
 2-7-1 | 16 FEB 2013
 
 * Added Mission Observers component. 
