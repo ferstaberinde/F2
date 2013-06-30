@@ -12,7 +12,7 @@ _player = _this select 0;
 _killer = _this select 1;
 _seagull = _this select 2;
 
-if(f_var_acre) then {
+if(f_var_acre > 0) then {
 
 	// Enable ACRE spectator
 	 _ret = [true] call acre_api_fnc_setSpectator;
