@@ -46,7 +46,7 @@
 
 _radio1 = "ACRE_PRC117F"; //longrange
 _radio2 = "ACRE_PRC148";  //midrange
-_radio3 = "";
+_radio3 = "ACRE_PRC343";
 
 // ====================================================================================
 
@@ -55,6 +55,22 @@ _radio3 = "";
 
 _typeofUnit = toLower (_this select 0);			// Tidy input for SWITCH/CASE statements, expecting something like : r = Rifleman, co = Commanding Officer, rat = Rifleman (AT)
 _unit = _this select 1;							// expecting name of unit; originally passed by using 'this' in unit init
+
+// ====================================================================================
+
+// DELETE ALL RADIOS
+// All previously assigned radios must be deleted, in order to set the radio frequencies per side.
+
+_clearRadiosHandle = _this execVM "f\common\fa_ACRE_clearRadios.sqf";
+
+waitUntil{scriptDone _clearRadiosHandle};
+
+// ====================================================================================
+
+// ADD 343s
+// Gives each player a 343.
+
+_unit addWeapon _radio3;
 
 // ====================================================================================
 
@@ -275,7 +291,7 @@ switch (_typeofUnit) do
    default
    {
 		_unit addWeapon _radio2;		
-		if (true) exitwith {player globalchat format ["DEBUG (f\common\folk_assignGear.sqf): Unit = %1. Gear template %2 does not exist, used Rifleman instead.",_unit,_typeofunit]};
+		if (true) exitwith {player globalchat format ["DEBUG (f\common\folk_assignGear_acre.sqf): Unit = %1. Gear template %2 does not exist, used Rifleman instead.",_unit,_typeofunit]};
    };
 
 

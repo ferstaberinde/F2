@@ -1,6 +1,6 @@
 # F2 README #
 
-* Version: 2-7-1
+* Version: 2-7-3
 * Codebase: https://github.com/ferstaberinde/F2
 * Developer: Please see credits section below.
 * Publishers: Fer (alanr@ferstaberinde.com)
@@ -29,6 +29,8 @@
 
 Version | Date | Notes
 
+* 2-7-3     | 02 JUL 2013 | Patch release - Various improvements (see change history).
+* 2-7-2     | 23 JUN 2013 | Patch release - Various improvements (see change history).
 * 2-7-1     | 16 FEB 2013 | Patch release - Various improvements (see change history).
 * 2-7-0     | 15 DEC 2012 | Patch release - Various improvements (see change history).
 * 2-6-1     | 02 JUL 2012 | Patch release - Various improvements (see change history).
@@ -130,7 +132,7 @@ Version | Date | Notes
 
 ## 03. COPYRIGHT STATEMENT ##
 
-F2 is composed of many components. Each component is (c) 2007/2008/2009/2010/2011/2012 its respective contributor(s). All rights reserved.
+F2 is composed of many components. Each component is (c) 2007/2008/2009/2010/2011/2012/2013 its respective contributor(s). All rights reserved.
 
 
 
@@ -195,6 +197,19 @@ Fer :) (alanr@ferstaberinde.com) (on behalf of all F2 / BAS f contributors)
 
 Version | Date
 
+2-7-3 | 02 JUL 2013
+
+* Fixed Kegetys Spectator Script component (broken by ACRE Support component).
+
+2-7-2 | 23 JUN 2013
+
+* Updated ORBAT Notes component (group names are now clickable and zoom map to group marker).
+* Updated CO Folk ARPS JIP Reinforcement Options component (JIP group does not follow player).
+* Updated CO Folk ARPS JIP Reinforcement Options component (JIP option more visible).
+* Updated ACRE Support component (automatically splits frequencies per side).
+* Updated ACRE Support component (added spectator chat).
+* Fixed F2 Common Local Variables component (prevented double-counts of vehicle crew).
+ 
 2-7-1 | 16 FEB 2013
 
 * Added Mission Observers component. 
