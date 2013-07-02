@@ -1,6 +1,6 @@
 # F2 README #
 
-* Version: 2-7-2
+* Version: 2-7-3
 * Codebase: https://github.com/ferstaberinde/F2
 * Developer: Please see credits section below.
 * Publishers: Fer (alanr@ferstaberinde.com)
@@ -29,6 +29,7 @@
 
 Version | Date | Notes
 
+* 2-7-3     | 02 JUL 2013 | Patch release - Various improvements (see change history).
 * 2-7-2     | 23 JUN 2013 | Patch release - Various improvements (see change history).
 * 2-7-1     | 16 FEB 2013 | Patch release - Various improvements (see change history).
 * 2-7-0     | 15 DEC 2012 | Patch release - Various improvements (see change history).
@@ -195,6 +196,10 @@ Fer :) (alanr@ferstaberinde.com) (on behalf of all F2 / BAS f contributors)
 ### F2 Change History ###
 
 Version | Date
+
+2-7-3 | 02 JUL 2013
+
+* Fixed Kegetys Spectator Script component (broken by ACRE Support component).
 
 2-7-2 | 23 JUN 2013
 
