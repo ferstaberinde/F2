@@ -4762,7 +4762,7 @@ class Mission
 					azimut=0.32468101;
 					id=305;
 					side="WEST";
-					vehicle="BAF_Soldier_SL_MTP";
+					vehicle="BAF_Soldier_Officer_MTP";
 					player="PLAY CDG";
 					leader=1;
 					rank="LIEUTENANT";
@@ -4799,7 +4799,7 @@ class Mission
 					azimut=0.32468101;
 					id=307;
 					side="WEST";
-					vehicle="BAF_Soldier_SL_MTP";
+					vehicle="BAF_Soldier_Officer_MTP";
 					player="PLAY CDG";
 					leader=1;
 					rank="LIEUTENANT";
@@ -4836,7 +4836,7 @@ class Mission
 					azimut=0.32468101;
 					id=309;
 					side="WEST";
-					vehicle="BAF_Soldier_TL_MTP";
+					vehicle="BAF_Soldier_SL_MTP";
 					player="PLAY CDG";
 					leader=1;
 					rank="CORPORAL";
@@ -5062,7 +5062,7 @@ class Mission
 					azimut=0.32468101;
 					id=323;
 					side="WEST";
-					vehicle="BAF_Soldier_TL_MTP";
+					vehicle="BAF_Soldier_SL_MTP";
 					player="PLAY CDG";
 					leader=1;
 					rank="CORPORAL";
@@ -5288,7 +5288,7 @@ class Mission
 					azimut=0.32468101;
 					id=337;
 					side="WEST";
-					vehicle="BAF_Soldier_TL_MTP";
+					vehicle="BAF_Soldier_SL_MTP";
 					player="PLAY CDG";
 					leader=1;
 					rank="CORPORAL";
