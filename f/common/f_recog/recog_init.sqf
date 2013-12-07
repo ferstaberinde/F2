@@ -16,6 +16,6 @@ if (!(isNull player) || (!isServer && isNull player)) then
 	
 	b_removeKeys = compile preprocessFileLineNumbers "f\common\f_recog\bRemoveKey.sqf";
 	b_keyHandler = compile preprocessFileLineNumbers "f\common\f_recog\bKeyHandler.sqf";
-	(findDisplay 46) displaySetEventHandler ["KeyUp", "_this call b_removeKeys"];
-	(findDisplay 46) displaySetEventHandler ["KeyDown", "_this call b_keyHandler"];
+	(findDisplay 46) displayAddEventHandler ["KeyUp", "_this call b_removeKeys"];
+	(findDisplay 46) displayAddEventHandler ["KeyDown", "_this call b_keyHandler"];
 };
